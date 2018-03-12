@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{msgs}}
+    <p v-bind:title="tits">qqqq</p>
+    <textarea style="background: aqua" v-model="inner">qqqq</textarea>
+    <p id="pli" style="height: 50px; background: blueviolet">{{inner}}</p>
+    <top></top>
+    <tits></tits>
+</div>
+<div ng-app="demo">
+    <div ng-controller="oo">{{msg}}</div>
+    <div ng-controller="tt">{{msg}}</div>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="node_modules/angular/angular.js"></script>
+<script type="text/javascript" src="node_modules/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    Vue.component('top',{
+        templete:"<span>1234</span>"
+    });
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            msgs:"Hellow vue",
+            tits:"页面加载于"+new Date().toLocaleString(),
+            inner:""
+        },
+        components:{
+            "tits":{
+                templete:"<span>1234</span>"
+            }
+        }
+    });
+    var app=angular.module('demo',[]);
+    app.controller('oo',function ($scope) {
+        $scope.msg="holle angular";
+    });
+    app.controller('tt',function ($scope) {
+        $scope.msg="holle angular two";
+    });
+</script>
